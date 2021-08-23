@@ -2,6 +2,10 @@
 
 @{ViewData["Title"] = "Repositories > Details";}
 
+<p class="text-sm-end">
+    <a class="link-secondary" target="_blank" href="@Model.HtmlUrl">Open this repository at github.com</a>
+</p>
+
 <h1>@ViewData["Title"]</h1>
 
 <div>
@@ -25,20 +29,21 @@
     </dl>
 </div>
 
-
-@if (ViewBag.FavoriteRepository != null)
-{
-    <form asp-action="RemoveFavorite" method="post">
-        <input type="hidden" name="Id" value="@ViewBag.FavoriteRepository.Id" />
-        <button class="btn btn-sm btn-outline-danger" type="submit">Unfavorite</button>
-    </form>
-}
-else
-{
-    <form asp-action="AddFavorite" method="post">
-        <input type="hidden" name="RepositoryId" value="@Model.Id" />
-        <button class="btn btn-sm btn-outline-success" type="submit">Favorite</button>
-    </form>
-}
+<div class="mb-3">
+    @if (ViewBag.FavoriteRepository != null)
+    {
+        <form asp-action="RemoveFavorite" method="post">
+            <input type="hidden" name="Id" value="@ViewBag.FavoriteRepository.Id" />
+            <button class="btn btn-sm btn-outline-danger" type="submit">Remove Favorite</button>
+        </form>
+    }
+    else
+    {
+        <form asp-action="AddFavorite" method="post">
+            <input type="hidden" name="RepositoryId" value="@Model.Id" />
+            <button class="btn btn-sm btn-outline-success" type="submit">Add Favorite</button>
+        </form>
+    }
+</div>
 
 <a asp-action="Index">Return to list</a>
