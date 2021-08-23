@@ -1,0 +1,44 @@
+﻿@model Repository;
+
+@{ViewData["Title"] = "Repositories > Details";}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>Repository</h4>
+    <hr />
+    <dl class="row">
+        <dt>Name</dt>
+        <dd>@Model.Name</dd>
+
+        <dt>Description</dt>
+        <dd>@Model.Description</dd>
+
+        <dt>Language</dt>
+        <dd>@Model.Language</dd>
+
+        <dt>Last Update Date</dt>
+        <dd>@Model.UpdatedAt</dd>
+
+        <dt>Owner</dt>
+        <dd>@(Model.Owner.Name ?? Model.Owner.Login)</dd>
+    </dl>
+</div>
+
+
+@if (ViewBag.FavoriteRepository != null)
+{
+    <form asp-action="RemoveFavorite" method="post">
+        <input type="hidden" name="Id" value="@ViewBag.FavoriteRepository.Id" />
+        <button class="btn btn-sm btn-outline-danger" type="submit">Unfavorite</button>
+    </form>
+}
+else
+{
+    <form asp-action="AddFavorite" method="post">
+        <input type="hidden" name="RepositoryId" value="@Model.Id" />
+        <button class="btn btn-sm btn-outline-success" type="submit">Favorite</button>
+    </form>
+}
+
+<a asp-action="Index">Return to list</a>
