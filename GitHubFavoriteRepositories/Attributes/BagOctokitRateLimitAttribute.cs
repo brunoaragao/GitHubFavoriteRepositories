@@ -11,7 +11,7 @@ namespace GitHubFavoriteRepositories.Attributes
         public BagOctokitRateLimitAttribute(GitHubClient client)
             => _client = client;
 
-        public override void OnActionExecuting(ActionExecutingContext context)
+        public override void OnActionExecuted(ActionExecutedContext context)
         {
             if (context.Controller is Controller controller)
             {
