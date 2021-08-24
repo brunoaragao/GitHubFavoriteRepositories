@@ -6,9 +6,13 @@ using GitHubFavoriteRepositories.DbContexts;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
+using GitHubFavoriteRepositories.Models;
+using GitHubFavoriteRepositories.Attributes;
 
 namespace GitHubFavoriteRepositories.Controllers
 {
+    [TypeFilter(typeof(BagOctokitRateLimitAttribute))]
     public class RepositoriesController : Controller
     {
         private readonly GitHubClient _client;
