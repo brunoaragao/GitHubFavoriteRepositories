@@ -22,7 +22,7 @@
         <dd>@Model.Language</dd>
 
         <dt>Last Update Date</dt>
-        <dd>@Model.UpdatedAt</dd>
+        <dd>@Model.UpdatedAt.LocalDateTime</dd>
 
         <dt>Owner</dt>
         <dd>@(Model.Owner.Name ?? Model.Owner.Login)</dd>
